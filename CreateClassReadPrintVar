@@ -1,0 +1,34 @@
+#!/usr/bin/python
+class Student(object):
+    """
+    Returns a ```Student``` object with the given name, branch and year.
+	Derived from https://pymbook.readthedocs.io/en/latest/classes.html
+	
+    """
+    def __init__(self, name, branch, year):
+            self.name = name
+            self.branch = branch
+            self.year = year
+            print("A student object is created.")
+	
+    def print_details(self):
+        """
+        Prints the details of the student.
+        """
+        print("Name:", self.name)
+        print("Branch:", self.branch)
+        print("Year:", self.year)
+
+print "Hello, Python!"
+
+def printme(str):
+        "This prints a passed string into function"
+        print "this will print this", str
+        return;
+
+str = raw_input("Enter your input: ");
+printme(str);
+
+str = raw_input("Enter your student: ");
+person1 = Student(str,'KL',2018)
+Student.print_details(str);
