@@ -1,0 +1,47 @@
+#!/usr/bin/python
+
+#this is for demonstrate decision making plus some basic of how to use loops
+
+#letter is the reserved word
+for letter in 'Python':
+   print 'Current Letter :', letter
+
+print ""
+
+#i is the interger, it could be any variable name. But must be interger.
+fruitslist = ['durian', 'rambutan',  'avocado', 'mangosteen']
+print fruitslist
+for i in fruitslist:
+   print 'I like fruit :', i
+print ""
+
+#i is the interger, it could be any variable name. But must be interger.
+fruitslist = ['durian', 'rambutan',  'avocado', 'mangosteen']
+print fruitslist
+for i in range(len(fruitslist)-1):
+   print 'I like fruit :', fruitslist[i]
+
+print ""
+
+#i is the interger, it could be any variable name. But must be interger.
+fruitstuples = ('durian', 'rambutan',  88, 'mangosteen')
+print fruitstuples
+for i in range(len(fruitstuples)-1):
+   print 'I like fruit :', fruitstuples[i]
+
+print ""
+
+
+
+#i is the interger, it could be any variable name. But must be interger.
+fruitstuples = ('durian', 'rambutan',  88, 'mangosteen')
+print fruitstuples
+for i in range(len(fruitstuples)):
+	if fruitstuples[i] == 88:
+		print 'I had reached fruit :', fruitstuples[i], ' exit now'
+		break
+	else:
+		print 'still waiting'
+print ""
+   
+print "End!"
