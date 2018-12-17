@@ -1,0 +1,42 @@
+#!/usr/bin/python
+class Student(object):
+    """
+		this python program to demonstrate how the decision making works.
+    """
+    def __init__(self, name, score, pass_score):
+            self.name = name
+            self.score = score
+            self.pass_score = pass_score
+            print "A student score definition is created." 
+	
+    def print_details(self):
+        """
+        Prints the Results.
+        """
+        print "Name:", self.name
+        print "Score:", self.score
+        print "Pass Score:", self.pass_score
+		if (self.score >= self.pass_score ):
+			print "You had passed your exam"
+		else:
+			print "You need to try again."
+
+print "Hello, Python!"
+
+def printme(vstr_name, vstr_score, vstr_passscore):
+	"System is getting the values"
+	print "Name enter", vstr_name
+	print "Score enter", vstr_score
+	print "Pass score enter", vstr_passscore
+	return;
+
+vstr_name = raw_input("Enter name: ");
+vstr_score = raw_input("Enter score: ");
+vstr_passscore = raw_input("Enter Pass Score: ");
+
+#print what you entered.
+printme(vstr_name,vstr_score,vstr_passscore);
+
+#print what you entered.
+person_result = Student(vstr_name,vstr_score,vstr_passscore)
+person_result.print_details();
