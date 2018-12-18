@@ -1,0 +1,38 @@
+#This is to demo to create own module and call it.
+#Python will call from local working directory if exist, else it will go to the standard python directory.
+
+cd /u01/app/
+vim /u01/app/myfun.py
+
+myfun.py
+========================================
+def myfunction():
+    print "ALREADY RUNNING THE FUNCTION."
+========================================
+
+
+in phython command prompt
+>>>import myfun
+>>>myfun.myfunction()
+ALREADY RUNNING THE FUNCTION.
+>>> myfun.__file__
+'myfun.pyc'
+
+Disconnect from phython prompt
+Ctrl+D
+
+mv /u01/app/myfun.py /usr/lib64/python2.7/myfun.py
+
+in the same directory as per previous python command prompt
+>>>import myfun
+>>>myfun.myfunction()
+ALREADY RUNNING THE FUNCTION.
+>>> myfun.__file__
+'/usr/lib64/python2.7/myfun.py'
+>>>
+
+*****Below are the list of directories whivh python will be looking for the modules
+>>> import sys
+>>> print sys.path
+['', '/usr/lib64/python27.zip', '/usr/lib64/python2.7', '/usr/lib64/python2.7/plat-linux2', '/usr/lib64/python2.7/lib-tk', '/usr/lib64/python2.7/lib-old', '/usr/lib64/python2.7/lib-dynload', '/usr/lib64/python2.7/site-packages', '/usr/lib64/python2.7/site-packages/gtk-2.0', '/usr/lib/python2.7/site-packages']
+>>>
