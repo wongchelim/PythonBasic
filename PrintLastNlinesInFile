@@ -1,0 +1,13 @@
+#!/usr/bin/python
+#Python 2.7.5 (default, Jul  3 2018, 06:28:28)
+#this program will print out last 50 lines inside the file
+
+import subprocess
+
+def GetLastNLines(n, fileName):
+    p=subprocess.Popen(['tail','-n',str(n),fileName], stdout=subprocess.PIPE)
+    soutput,sinput=p.communicate()
+    return soutput
+	
+for line in GetLastNLines(50,'myfile.log').split('\n'):
+    print line
