@@ -1,0 +1,58 @@
+#!/usr/bin/python
+
+#this python program for demonstrate global and local variables
+
+#global variables
+G_VNAME = "That is ok"
+G_SALARY = 3000
+
+class employee(object):
+    """
+		this python program for demonstrate global and local variables
+    """
+    def __init__(self, name, salary, tax):
+		self.name = name
+		self.salary = salary
+		self.tax = tax
+		print "A student score definition is created." 
+
+    def print_details(self):
+        """
+        Prints employee detail
+        """
+		#It is a must place to specify you are using the global variable
+		global G_VNAME
+        print "Name:", self.name
+        print "Salary:", self.salary
+		print "Salary:", self.tax
+        print "Tax amount:", (self.salary*self.tax/100)
+		print "Net amount:", self.salary - (self.salary*self.tax/100)
+		if G_SALARY > (self.salary - (self.salary*self.tax/100)):
+			#you not doing anything on the global value
+			print G_VNAME
+		else:
+			#you already changed the global value
+			G_VNAME = "not ok"
+			print G_VNAME
+
+print "Hello, Python!"
+G_FINALTEXT=G_VNAME
+
+def printme(vstr_name, vnum_salary, vnum_taxrate):
+	"System is getting the values"
+	print "Name enter", vstr_name
+	print "Salary enter", vnum_salary
+	print "Tax rate enter", vnum_taxrate
+	return;
+
+vstr_name = raw_input("Enter name: ");
+vnum_salary = input("Enter Salary: ");
+vnum_taxrate = input("Enter Tax rate: ");
+
+#print what you entered.
+printme(vstr_name,vnum_salary,vnum_taxrate);
+
+#print what you entered.
+person_result = employee(vstr_name,vnum_salary,vnum_taxrate)
+person_result.print_details();
+print "Initially was ",G_FINALTEXT," now ",G_VNAME
