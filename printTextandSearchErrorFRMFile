@@ -1,0 +1,10 @@
+#!/usr/bin/python
+import subprocess
+
+f1 = open('citycity.txt',"r")
+line = subprocess.check_output(['tail', '-5', 'citycity.txt'])
+for line in subprocess.check_output(['tail', '-5', 'citycity.txt']).split('\n'):
+	if line <> "":
+		if line.find("Error") == 0:
+			print line.split()[0], "ok "
+f1.close()
