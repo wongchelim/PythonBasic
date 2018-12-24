@@ -1,4 +1,6 @@
 #!/usr/bin/python
+#this script only display the last 5 lines of records inside the text file and display ok at the back of the line with error text
+
 import subprocess
 
 f1 = open('citycity.txt',"r")
