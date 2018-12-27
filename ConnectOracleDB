@@ -1,0 +1,27 @@
+#!/usr/bin/python
+#this program demonstrate to connect to the oracle and run a sql and run the SQL command from sqlplus prompt via python
+import os
+import cx_Oracle
+
+def query_fetchall():
+    try:
+        conn = cx_Oracle.connect('SYSTEM/test@localhost/orcl')
+        curs = conn.cursor()
+        curs.execute("select name from gv$database")
+		rows = curs.fetchall()
+
+        print 'Total Row(s):', curs.rowcount 
+        for row in rows:
+            print row 
+		
+		o=os.popen('sqlplus "/ as sysdba" @yoursql.sql')
+    except Error as e:
+        print e
+
+    finally:
+        curs.close()
+        conn.close()
+
+if __name__ == '__main__':
+    query_fetchall()
+	
