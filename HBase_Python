@@ -1,0 +1,113 @@
+##############CReate table using python to the hbase
+import happybase
+
+connection = happybase.Connection('oel7myrac1', autoconnect=True)
+
+connection.open()
+citytable = connection.table("city")
+connection.create_table('sometable', {"info":{}})
+
+
+print(connection.tables())
+connection.is_table_enabled('city')
+
+#it will first disable the table first, which parameter set to True
+connection.delete_table("sometable", True)
+
+connection.close()
+
+
+
+##############Insert  table using python to the hbase
+import happybase
+
+connection = happybase.Connection('oel7myrac1', autoconnect=True)
+
+connection.open()
+
+sometable1 = connection.table("sometable")
+
+##############Insert
+
+sometable1.put("1",{"info:data":"22222"})
+sometable1row = sometable1.row("1")
+print(sometable1row)
+#Output
+#{b'info:data': b'22222'}
+
+
+sometable1.put("2",{"info:data":"333333"})
+sometable1row = sometable1.row("2")
+print(sometable1row)
+#Output
+#{b'info:data': b'333333'}
+
+##############Update
+sometable1.put("1",{"info:data":"25552"})
+sometable1row = sometable1.row("1")
+print(sometable1row)
+#Output
+#{b'info:data': b'25552'}
+sometable1.put("1",{"info:custom":"Devil"})
+
+
+
+##############Select all the rows
+sometable1rows = sometable1.rows(["1","2"])
+print(sometable1rows)
+#Output
+#[(b'1', {b'info:data': b'25552'}), (b'2', {b'info:data': b'333333'})]
+
+
+for key, value in sometable1.scan():
+    print(key, value)
+
+#b'1' {b'info:data': b'25552'}
+#b'2' {b'info:data': b'333333'}
+#b'sometable' {b'info:data': b'333333'}
+
+for key, value in sometable1.scan(row_start="1", row_stop="sometable"):
+    print(key, value)
+#b'1' {b'info:data': b'25552'}
+#b'2' {b'info:data': b'333333'}
+
+##############delete a records
+sometable1.delete("sometable")
+
+>>> for key, value in sometable1.scan():
+...     print(key, value)
+...
+b'1' {b'info:data': b'25552'}
+b'2' {b'info:data': b'333333'}
+
+##############delete a column
+>>> sometable1.put("1",{"info:custom":"Devil"})
+>>> for key, value in sometable1.scan():
+...     print(key, value)
+...
+b'1' {b'info:custom': b'Devil', b'info:data': b'25552'}
+b'2' {b'info:data': b'333333'}
+>>> sometable1.delete("1", columns=["info:custom"])
+>>> for key, value in sometable1.scan():
+...     print(key, value)
+...
+b'1' {b'info:data': b'25552'}
+b'2' {b'info:data': b'333333'}
+>>>
+
+##############Collect all operations as a batch
+b = sometable1.batch()
+b.put("3",{"info:data":"32222"})
+b.put("4",{"info:data":"42222"})
+b.put("5",{"info:data":"52222"})
+b.delete(b'4')
+b.send()
+
+>>> for key, value in sometable1.scan(row_start="1", row_stop="sometable"):
+    print(key, value)...
+...
+b'1' {b'info:data': b'25552'}
+b'2' {b'info:data': b'333333'}
+b'3' {b'info:data': b'32222'}
+b'5' {b'info:data': b'52222'}
+>>>
